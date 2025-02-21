@@ -9,15 +9,16 @@ library(ggrepel)
 # load data
 nfldata = load_pbp(2024)
 
+receiver_player_id == "00-0036900" | receiver_player_id == "00-0039337" | receiver_player_id == "00-0037238" |
+         receiver_player_id == "00-0036322" | receiver_player_id == "00-0036963" | receiver_player_id == "00-0036358" |
+         receiver_player_id == "00-0037740" | receiver_player_id == "00-0039338" | receiver_player_id == "00-0036407" |
+         receiver_player_id == "00-0037744" | receiver_player_id == "00-0038543" | receiver_player_id == "00-0039893" |
+         receiver_player_id == "00-0039915"
 # filter data
 wrdata6 = nfldata %>%
   filter(week < 19,
          !is.na(yards_gained),
-         receiver_player_id == "00-0036900" | receiver_player_id == "00-0039337" | receiver_player_id == "00-0037238" |
-         receiver_player_id == "00-0036322" | receiver_player_id == "00-0036963" | receiver_player_id == "00-0036358" |
-         receiver_player_id == "00-0037740" | receiver_player_id == "00-0039338" | receiver_player_id == "00-0036407" |
-         receiver_player_id == "00-0037744" | receiver_player_id == "00-0038543" | receiver_player_id == "00-0039893" |
-         receiver_player_id == "00-0039915") %>%
+         !is.na(receiver_player_id)) %>%
   group_by(play_id, receiver_player_id, receiver_player_name, posteam) %>%
   summarize(tgts = n(),
             yds = sum(yards_gained),
@@ -44,7 +45,8 @@ wrplot6 = wrdata6 %>%
             aes(label = cumyds,
                 color = posteam, fontface = "bold.italic", size = 7)) +
   scale_color_nfl(type = "primary") +
-  labs(title = "",
+  labs(title = "Targets and Receiving Yards by Player",
+       subtitle = "2024 NFL Regular Season",
        caption = "By Nick Gasperi | @tbanalysis | Data @nflfastR",
        x = "Targets", y = "Receiving Yards") +
   theme_minimal() +
@@ -54,3 +56,6 @@ wrplot6 = wrdata6 %>%
 # view plot
 wrplot6
 
+# save plot
+ggsave("SubSt4.n - chase_yards.png",
+       width = 10.5, height = 7, dpi = "retina")

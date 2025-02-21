@@ -35,6 +35,8 @@ wrplot5 = ggplot(data = wrdata5, aes(x = tgts, y = recyd)) +
                   aes(label = receiver_player_name,
                       color = posteam)) +
   scale_color_nfl(type = "primary") +
+  scale_x_continuous(breaks = c(110, 130, 150, 170)) +
+  scale_y_continuous(breaks = c(900, 1100, 1300, 1500, 1700)) +
   labs(title = "Targets vs. Receiving Yards",
        subtitle = "2024 NFL Regular Season",
        caption = "By Nick Gasperi | @tbanalysis | Data @nflfastR",
