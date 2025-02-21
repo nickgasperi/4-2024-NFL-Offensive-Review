@@ -9,11 +9,6 @@ library(ggrepel)
 # load data
 nfldata = load_pbp(2024)
 
-receiver_player_id == "00-0036900" | receiver_player_id == "00-0039337" | receiver_player_id == "00-0037238" |
-         receiver_player_id == "00-0036322" | receiver_player_id == "00-0036963" | receiver_player_id == "00-0036358" |
-         receiver_player_id == "00-0037740" | receiver_player_id == "00-0039338" | receiver_player_id == "00-0036407" |
-         receiver_player_id == "00-0037744" | receiver_player_id == "00-0038543" | receiver_player_id == "00-0039893" |
-         receiver_player_id == "00-0039915"
 # filter data
 wrdata6 = nfldata %>%
   filter(week < 19,
