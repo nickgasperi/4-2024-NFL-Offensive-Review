@@ -51,6 +51,6 @@ wrplot5 = ggplot(data = wrdata5, aes(x = tgts, y = recyd)) +
 wrplot5
 
 # save plot
-ggsave("X post 48 - reg_passers.png",
+ggsave("SubSt4.n - reg_passers.png",
        width = 10.5, height = 7, dpi = "retina")  
   
