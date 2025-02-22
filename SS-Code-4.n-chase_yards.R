@@ -12,7 +12,7 @@ nfldata = load_pbp(2024)
 # filter data
 wrdata6 = nfldata %>%
   filter(week < 19,
-         !is.na(yards_gained),
+         !is.n`a(yards_gained),
          !is.na(receiver_player_id)) %>%
   group_by(play_id, receiver_player_id, receiver_player_name, posteam) %>%
   summarize(tgts = n(),
@@ -46,7 +46,10 @@ wrplot6 = wrdata6 %>%
        x = "Targets", y = "Receiving Yards") +
   theme_minimal() +
   theme(legend.position = "none",
-        plot.background = element_rect(fill = "#F0F0F0"))
+        plot.background = element_rect(fill = "#F0F0F0"),
+        plot.title = element_text(),
+        plot.subtitle = element_text( ),
+        plot.caption = element_text(size = 11))
 
 # view plot
 wrplot6
