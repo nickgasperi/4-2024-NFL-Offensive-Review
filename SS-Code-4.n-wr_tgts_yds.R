@@ -31,7 +31,7 @@ wrplot5 = ggplot(data = wrdata5, aes(x = tgts, y = recyd)) +
   geom_smooth(method = "lm", se = FALSE, color = "grey") +
   geom_nfl_logos(aes(team_abbr = posteam),
                  width = 0.04, alpha = 0.8) +
-  geom_text_repel(box.padding = 0.5,
+  geom_text_repel(box.padding = 0.3,
                   aes(label = receiver_player_name,
                       color = posteam)) +
   scale_color_nfl(type = "primary") +
