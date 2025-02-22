@@ -67,3 +67,7 @@ wrplot8 = ggplot(data = wrdata8, aes(x = week, y = cumtd, group = receiver_playe
 
 # view plot
 wrplot8
+
+# save plot
+ggsave("SubSt4.n - chase_rec_tds.png",
+       width = 10.5, height = 7, dpi = "retina")
