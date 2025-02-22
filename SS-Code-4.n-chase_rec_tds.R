@@ -45,7 +45,8 @@ wrplot8 = ggplot(data = wrdata8, aes(x = week, y = cumtd, group = receiver_playe
   geom_point(data = framewr8,
              aes(color = posteam),
              size = 2.5) +
-  geom_text_repel(data = framewr8,
+  geom_text_repel(box.padding = 0.2,
+                  data = framewr8,
                   aes(label = cumtd,
                       color = posteam,
                       fontface = "bold.italic"),
