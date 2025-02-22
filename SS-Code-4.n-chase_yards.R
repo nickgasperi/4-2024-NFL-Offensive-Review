@@ -4,6 +4,7 @@ library(nflfastR)
 library(nflplotR)
 library(nflreadr)
 library(ggplot2)
+library(gghighlight)
 library(ggrepel)
 
 # load data
@@ -29,21 +30,26 @@ framewr6 = wrdata6 %>%
   print(n = Inf)
 
 # plot data
-wrplot6 = wrdata6 %>%
-  mutate(colorwr6 = ifelse(receiver_player_id == "00-0036900", posteam, "black")) %>%
-  ggplot(aes(x = cumtgts, y = cumyds, group = receiver_player_id)) +
-  geom_line(aes(color = colorwr6,
-                linetype = "solid")) +
+wrplot6 = ggplot(data = wrdata6, aes(x = play_id, y = cumyds, group = receiver_player_id)) +
+  geom_line(aes(color = posteam),
+            linewidth = 1.0) +
+  gghighlight(receiver_player_id == "00-0036900",
+              label_key = receiver_player_name,
+              use_direct_label = FALSE,
+              unhighlighted_params = list(linewidth = 0.5)) +
   geom_point(data = framewr6,
-             aes(color = posteam)) +
+             aes(color = posteam),
+             size = 2.5) +
   geom_text_repel(data = framewr6,
-            aes(label = cumyds,
-                color = posteam, fontface = "bold.italic", size = 7)) +
-  scale_color_nfl(type = "primary") +
+                  aes(label = cumyds,
+                      color = posteam,
+                      fontface = "bold.italic"),
+                  size = 6.5) +
+  scale_y_continuous(breaks = c(0, 400, 800, 1200, 1600)) +
   labs(title = "Ja'Marr Chase Triple Crown - Receiving Yards",
        subtitle = "2024 NFL Regular Season",
        caption = "By Nick Gasperi | @tbanalysis | Data @nflfastR",
-       x = "Targets", y = "Receiving Yards") +
+       y = "Receiving Yards") +
   theme_minimal() +
   theme(legend.position = "none",
         plot.background = element_rect(fill = "#F0F0F0"),
@@ -51,7 +57,8 @@ wrplot6 = wrdata6 %>%
         plot.subtitle = element_text(face = "bold", size = 16),
         plot.caption = element_text(size = 11),
         axis.title = element_text(face = "bold", size = 15),
-        axis.text = element_text(size = 15))
+        axis.text.x = element_blank(),
+        axis.text.y = element_text(size = 15))
 
 # view plot
 wrplot6
