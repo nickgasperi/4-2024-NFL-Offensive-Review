@@ -12,7 +12,7 @@ nfldata = load_pbp(2024)
 # filter data
 wrdata6 = nfldata %>%
   filter(week < 19,
-         !is.n`a(yards_gained),
+         !is.na(yards_gained),
          !is.na(receiver_player_id)) %>%
   group_by(play_id, receiver_player_id, receiver_player_name, posteam) %>%
   summarize(tgts = n(),
@@ -40,16 +40,18 @@ wrplot6 = wrdata6 %>%
             aes(label = cumyds,
                 color = posteam, fontface = "bold.italic", size = 7)) +
   scale_color_nfl(type = "primary") +
-  labs(title = "Targets and Receiving Yards by Player",
+  labs(title = "Ja'Marr Chase Triple Crown - Receiving Yards",
        subtitle = "2024 NFL Regular Season",
        caption = "By Nick Gasperi | @tbanalysis | Data @nflfastR",
        x = "Targets", y = "Receiving Yards") +
   theme_minimal() +
   theme(legend.position = "none",
         plot.background = element_rect(fill = "#F0F0F0"),
-        plot.title = element_text(),
-        plot.subtitle = element_text( ),
-        plot.caption = element_text(size = 11))
+        plot.title = element_text(face = "bold", size = 18),
+        plot.subtitle = element_text(face = "bold", size = 16),
+        plot.caption = element_text(size = 11),
+        axis.title = element_text(face = "bold", size = 15),
+        axis.text = element_text(size = 15))
 
 # view plot
 wrplot6
