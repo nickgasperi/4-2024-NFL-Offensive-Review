@@ -1,9 +1,7 @@
 library(tidyverse)
-library(dplyr)
 library(nflfastR)
 library(nflplotR)
 library(nflreadr)
-library(ggplot2)
 library(ggrepel)
 
 # load data
@@ -38,13 +36,13 @@ wrplot5 = ggplot(data = wrdata5, aes(x = tgts, y = recyd)) +
   scale_x_continuous(breaks = c(110, 130, 150, 170)) +
   scale_y_continuous(breaks = c(900, 1100, 1300, 1500, 1700)) +
   labs(title = "Targets vs. Receiving Yards",
-       subtitle = "2024 NFL Regular Season",
+       subtitle = "2024 NFL Regular Season (min 110 targets)",
        caption = "By Nick Gasperi | @tbanalysis | Data @nflfastR",
        x = "Targets", y = "Receiving Yards") +
   theme_minimal() +
   theme(plot.background = element_rect(fill = "#F0F0F0"),
-        plot.title = element_text(hjust = 0.5, face = "bold", size = 18),
-        plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 16),
+        plot.title = element_text(hjust = 0.5, face = "bold", size = 20),
+        plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 18),
         plot.caption = element_text(size = 11),
         axis.title = element_text(face = "bold", size = 15),
         axis.text = element_text(size = 15))
